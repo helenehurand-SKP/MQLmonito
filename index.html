@@ -217,6 +217,28 @@ body { font-family:var(--font); background:var(--g100); color:var(--navy); }
     <button class="btn btn-primary" onclick="downloadTSV()">↓ Export TSV</button>
   </div>
 
+  <div style="margin-top:24px;background:var(--white);border:1px solid var(--g200);border-radius:10px;padding:16px 18px">
+    <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:var(--g400);margin-bottom:10px">Légende — priorisation &amp; SLA</div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px">
+      <div style="border-left:3px solid var(--hot);padding:2px 0 2px 12px">
+        <div style="font-size:12px;font-weight:700;color:var(--hot)">🔴 P1 — HOT · SLA &lt; 24h</div>
+        <div style="font-size:11.5px;color:var(--g700);margin-top:3px;line-height:1.5">Toute <strong>demande de démo</strong> (passe automatiquement en P1), ou score ≥ 60. À traiter en moins de 24h : appel J+0 + relance perso.</div>
+      </div>
+      <div style="border-left:3px solid var(--warm);padding:2px 0 2px 12px">
+        <div style="font-size:12px;font-weight:700;color:var(--warm)">🟠 P2 — WARM · SLA &lt; 48h</div>
+        <div style="font-size:11.5px;color:var(--g700);margin-top:3px;line-height:1.5">Score entre 35 et 59. Engagement notable (clic/open récent, 2+ conversions, tier ABM). Séquence semi-personnalisée sous 48h.</div>
+      </div>
+      <div style="border-left:3px solid var(--cool);padding:2px 0 2px 12px">
+        <div style="font-size:12px;font-weight:700;color:#c8970a">🟡 P3 — COOL · SLA &lt; 5 jours</div>
+        <div style="font-size:11.5px;color:var(--g700);margin-top:3px;line-height:1.5">Score &lt; 35. Signaux faibles. Nurturing léger, à réévaluer sous 2 semaines.</div>
+      </div>
+    </div>
+    <div style="font-size:10.5px;color:var(--g400);margin-top:12px;line-height:1.6;font-family:var(--mono)">
+      Barème du score : Demo +35 · 3+ conversions +25 / 2 conv. +15 · clic email &lt;7j +20 · open email &lt;7j +10 · séquence active &lt;7j +10 · compte ABM Tier 1 +10 / Tier 2 +5 · Connected +10 / Attempted +5.<br>
+      Fenêtre : MQL des <strong>14 derniers jours</strong> (au-delà, le contact sort du dashboard). Comparatif « vs S-1 » : évolution statut / priorité / score d'une semaine sur l'autre.
+    </div>
+  </div>
+
 </div>
 
 <script>
@@ -230,38 +252,23 @@ const OWNERS = {
 
 const RAW = [{"id": "230375656877", "firstname": "Pierre-Yves", "lastname": "Bastin", "email": "p-ybastin@hotmail.be", "jobtitle": "Director/Head of E-commerce", "company": "Baswil", "company_tier": "", "owner": "186355996", "status": "New", "qt": "Demo", "event": null, "event_status": null, "recent_evt": "Thank you - Skeepers: FR-SKP-ALL-FO-Demo Form (2nd)", "recent_date": "2026-06-22", "mql_date": "2026-06-22", "convs": 2, "open": null, "click": null, "seq": null},
 {"id": "229132916490", "firstname": "Jean-Michel", "lastname": "Larre", "email": "jm.larre@vitaalgae.com", "jobtitle": "Director/Head of Founder/CEO", "company": "VitaAlgae Europe", "company_tier": "", "owner": "186355996", "status": "New", "qt": "Demo", "event": null, "event_status": null, "recent_evt": "Thank you - Skeepers: FR-SKP-ALL-FO-Demo Form (2nd)", "recent_date": "2026-06-17", "mql_date": "2026-06-17", "convs": 2, "open": null, "click": null, "seq": null},
-{"id": "228715630156", "firstname": "Jonathan", "lastname": "Clementz", "email": "jonathan.clementz@manutan.fr", "jobtitle": "group Head of pricing", "company": "Manutan", "company_tier": "", "owner": "692717221", "status": "New", "qt": "Webinar Follow Up", "event": "2026-Q2-FR-SKP-WEBINAR-WEBINAR COMARKETING-Linkedin CX Advisor", "event_status": "Attendee", "recent_evt": null, "recent_date": null, "mql_date": "2026-06-16", "convs": 0, "open": null, "click": null, "seq": null},
-{"id": "228720309092", "firstname": "Benjamin", "lastname": "Soriano", "email": "benjamin.soriano@fnacdarty.com", "jobtitle": "Directeur Surete Groupe", "company": "Fnac Darty", "company_tier": "", "owner": "2088955178", "status": "New", "qt": "Webinar Follow Up", "event": "2026-Q2-FR-SKP-WEBINAR-WEBINAR COMARKETING-Linkedin CX Advisor", "event_status": "Attendee", "recent_evt": null, "recent_date": null, "mql_date": "2026-06-16", "convs": 0, "open": null, "click": null, "seq": null},
-{"id": "228715674780", "firstname": "Claire", "lastname": "Jamoulle", "email": "claire.jamoulle@edf.fr", "jobtitle": "Adjointe au chef de service clients", "company": "EDF", "company_tier": "", "owner": "1100767711", "status": "Attempted to contact", "qt": "Webinar Follow Up", "event": "2026-Q2-FR-SKP-WEBINAR-WEBINAR COMARKETING-Linkedin CX Advisor", "event_status": "Attendee", "recent_evt": null, "recent_date": null, "mql_date": "2026-06-16", "convs": 0, "open": null, "click": null, "seq": null},
-{"id": "227922004910", "firstname": "Amelie", "lastname": "Smith", "email": "amelie.smith@rivesparis.banquepopulaire.fr", "jobtitle": "Communication RSE", "company": "BRPI", "company_tier": "", "owner": "1100767711", "status": "New", "qt": "Scoring", "event": null, "event_status": null, "recent_evt": "Observatoire des parcours clients: FR-FO-Discover content", "recent_date": "2026-06-12", "mql_date": "2026-06-15", "convs": 1, "open": null, "click": null, "seq": null},
-{"id": "226058886750", "firstname": "Akins", "lastname": "Anretar", "email": "akins.anretar@sncf.fr", "jobtitle": "Chargé de la Relation Client Chez Ouigo - SNCF Voyageurs", "company": "OUIGO", "company_tier": "", "owner": "1100767711", "status": "New", "qt": "Scoring", "event": null, "event_status": null, "recent_evt": null, "recent_date": null, "mql_date": "2026-06-15", "convs": 0, "open": null, "click": null, "seq": null},
-{"id": "226058878557", "firstname": "Marie", "lastname": "Carlos", "email": "marie.carlos@sncf.fr", "jobtitle": "Responsable Expérience Client", "company": "SNCF Gares & Connexions", "company_tier": "", "owner": "1100767711", "status": "Attempted to contact", "qt": "Scoring", "event": null, "event_status": null, "recent_evt": null, "recent_date": null, "mql_date": "2026-06-16", "convs": 0, "open": null, "click": null, "seq": null},
 {"id": "226035934523", "firstname": "Catherine", "lastname": "Baranski", "email": "catherine.baranski@orange.com", "jobtitle": "International Marketing Communications Executive", "company": "Orange Business Services", "company_tier": "", "owner": "2088955178", "status": "Nurturing", "qt": null, "event": null, "event_status": null, "recent_evt": null, "recent_date": null, "mql_date": "2026-06-19", "convs": 0, "open": null, "click": null, "seq": null},
-{"id": "212596193070", "firstname": "Robin", "lastname": "Fuertes", "email": "robin.fuertes@bpce.fr", "jobtitle": "Responsable Learning & Development", "company": "Natixis", "company_tier": "", "owner": "1100767711", "status": "Nurturing", "qt": "Scoring", "event": null, "event_status": null, "recent_evt": null, "recent_date": null, "mql_date": "2026-06-15", "convs": 0, "open": null, "click": null, "seq": null},
-{"id": "211689405713", "firstname": "Isidoro", "lastname": "Elisabeth [ceidf]", "email": "elisabeth.isidoro@ceidf.caisse-epargne.fr", "jobtitle": "Responsable régionale gestion privée", "company": "Caisse d'Epargne Ile-de-France", "company_tier": "", "owner": "1100767711", "status": "Nurturing", "qt": "Scoring", "event": null, "event_status": null, "recent_evt": null, "recent_date": null, "mql_date": "2026-06-15", "convs": 0, "open": null, "click": null, "seq": null},
-{"id": "202930417263", "firstname": "Hugo", "lastname": "Baugé", "email": "hbauge@liberatedbrands.eu", "jobtitle": "Marketplace Manager", "company": "Volcom", "company_tier": "", "owner": "2088955178", "status": "New", "qt": null, "event": null, "event_status": null, "recent_evt": null, "recent_date": null, "mql_date": "2026-06-29", "convs": 0, "open": null, "click": null, "seq": null},
 {"id": "157263821887", "firstname": "Camille", "lastname": "Jeune", "email": "camille.lejeune@cromology.com", "jobtitle": "Responsable Digital et E-commerce Groupe", "company": "Cromology", "company_tier": "", "owner": "692717221", "status": "Attempted to contact", "qt": "Event Followup", "event": "2025-Q3-FR-SKP-ALL-EVENT-EVENT EXTERNAL-All4Customer Meetings Cannes", "event_status": "Meeting", "recent_evt": null, "recent_date": null, "mql_date": "2026-06-29", "convs": 0, "open": null, "click": null, "seq": null},
-{"id": "133576395081", "firstname": "Gaëlle", "lastname": "Delespine", "email": "gaelle.delespine@melvita.com", "jobtitle": "Directrice Générale MELVITA France", "company": "Melvita - Groupe L'Occitane en Provence", "company_tier": "", "owner": "692717221", "status": "New", "qt": null, "event": null, "event_status": null, "recent_evt": null, "recent_date": null, "mql_date": "2026-06-22", "convs": 0, "open": null, "click": null, "seq": null},
-{"id": "124895457120", "firstname": "Yann", "lastname": "Lhostis", "email": "yann.lhostis@bpce.fr", "jobtitle": "Expérience Client et Marketing Digital", "company": "Groupe BPCE", "company_tier": "", "owner": "1100767711", "status": "Attempted to contact", "qt": "Scoring", "event": null, "event_status": null, "recent_evt": null, "recent_date": null, "mql_date": "2026-06-15", "convs": 0, "open": null, "click": null, "seq": null},
-{"id": "112386446163", "firstname": "Cyriel", "lastname": "Meille", "email": "cyriel@snowleader.com", "jobtitle": "Chef de projet Web freelance", "company": "SNOWLEADER", "company_tier": "2", "owner": "692717221", "status": "New", "qt": null, "event": null, "event_status": null, "recent_evt": null, "recent_date": null, "mql_date": "2026-06-25", "convs": 0, "open": null, "click": null, "seq": null},
-{"id": "56297721639", "firstname": "Jennifer", "lastname": "Lively-Verguet", "email": "jlively@lyreco.com", "jobtitle": "Group Head Of Digital Product", "company": "LYRECO - FR", "company_tier": "", "owner": "692717221", "status": "New", "qt": null, "event": null, "event_status": null, "recent_evt": null, "recent_date": null, "mql_date": "2026-06-29", "convs": 0, "open": null, "click": null, "seq": null},
-{"id": "30860601228", "firstname": "Gaîlle", "lastname": "Benoit", "email": "gaelle.benoit@sncf.fr", "jobtitle": "Directrice Strategie Marques, Communication et CRM", "company": "SNCF", "company_tier": "", "owner": "1100767711", "status": "New", "qt": "Webinar Follow Up", "event": "2026-Q2-FR-SKP-WEBINAR-WEBINAR COMARKETING-Linkedin CX Advisor", "event_status": "Attendee", "recent_evt": null, "recent_date": null, "mql_date": "2026-06-16", "convs": 0, "open": null, "click": null, "seq": null},
-{"id": "40851311", "firstname": "Christelle", "lastname": "Fabre", "email": "christelle.fabre@cromologyservices.com", "jobtitle": "Directrice Marketing et Développement", "company": "Cromology Services (zolpan, tollens)", "company_tier": "2", "owner": "692717221", "status": "Attempted to contact", "qt": null, "event": null, "event_status": null, "recent_evt": null, "recent_date": null, "mql_date": "2026-06-25", "convs": 0, "open": null, "click": null, "seq": null},
-{"id": "23406443", "firstname": "Jérome", "lastname": "Laffon", "email": "jerome.laffon@sncf.fr", "jobtitle": "Directeur Général OUIGO", "company": "OUIGO", "company_tier": "", "owner": "1100767711", "status": "Attempted to contact", "qt": "Webinar Follow Up", "event": "2026-Q2-FR-SKP-WEBINAR-WEBINAR COMARKETING-Linkedin CX Advisor", "event_status": "Registered", "recent_evt": null, "recent_date": null, "mql_date": "2026-06-17", "convs": 0, "open": null, "click": null, "seq": null}];
+{"id": "133576395081", "firstname": "Gaëlle", "lastname": "Delespine", "email": "gaelle.delespine@melvita.com", "jobtitle": "Directrice Générale MELVITA France", "company": "Melvita - Groupe L'Occitane en Provence", "company_tier": "1", "owner": "692717221", "status": "New", "qt": null, "event": null, "event_status": null, "recent_evt": null, "recent_date": null, "mql_date": "2026-06-22", "convs": 0, "open": null, "click": null, "seq": null},
+{"id": "112386446163", "firstname": "Cyriel", "lastname": "Meille", "email": "cyriel@snowleader.com", "jobtitle": "Chef de projet Web freelance", "company": "SNOWLEADER", "company_tier": "", "owner": "692717221", "status": "New", "qt": null, "event": null, "event_status": null, "recent_evt": null, "recent_date": null, "mql_date": "2026-06-25", "convs": 0, "open": null, "click": null, "seq": null},
+{"id": "40851311", "firstname": "Christelle", "lastname": "Fabre", "email": "christelle.fabre@cromology.com", "jobtitle": "Directrice Marketing et Développement", "company": "Cromology Services (zolpan, tollens)", "company_tier": "", "owner": "692717221", "status": "Attempted to contact", "qt": null, "event": null, "event_status": null, "recent_evt": null, "recent_date": null, "mql_date": "2026-06-25", "convs": 0, "open": null, "click": null, "seq": null},
+{"id": "23406443", "firstname": "Jérome", "lastname": "Laffon", "email": "jerome.laffon@sncf.fr", "jobtitle": "Directeur Général OUIGO", "company": "OUIGO", "company_tier": "1", "owner": "1100767711", "status": "Attempted to contact", "qt": "Webinar Follow Up", "event": "2026-Q2-FR-SKP-WEBINAR-WEBINAR COMARKETING-Linkedin CX Advisor", "event_status": "Registered", "recent_evt": null, "recent_date": null, "mql_date": "2026-06-17", "convs": 0, "open": null, "click": null, "seq": null}];
 
 // ─── HUBSPOT EMAIL ENGAGEMENT (live pull) ──────────────────────────────────
 // opens/clicks = total cumulé HubSpot ; lastOpen/lastClick = dernière date ;
 // lastUrl = "Last Page Seen" HubSpot (dernière page vue par le contact).
 const HS_ENGAGE = {
   "230375656877":{lastUrl:"https://skeepers.io/fr/thank-you-questions/?submissionGuid=10680c94-4eb0-4427-bef9-72d9abb7a118"},
-  "229132916490":{lastUrl:"https://skeepers.io/"},
-  "227922004910":{lastUrl:"https://skeepers.io/fr/lp/ebook-observatoire-parcours-clients/"},
-  "124895457120":{opens:26, lastOpen:"2025-05-22", clicks:1, lastClick:"2025-05-22", lastEmail:"2025-Q2-FR-SKP-AV-WBN-Post webinar-Features IA - No show"},
-  "30860601228":{opens:2, lastOpen:"2026-04-28", lastEmail:"2026-Q1-FR-ALL-SKP-May Newsletter Prospects"}
+  "229132916490":{lastUrl:"https://skeepers.io/"}
 };
 
 // ─── COMPARATIF S-1 (semaine précédente) ──────────────────────────
-const PREV = {"230375656877": {"status": "New", "prio": "P1", "score": 50}, "229132916490": {"status": "New", "prio": "P1", "score": 50}, "227922004910": {"status": "New", "prio": "P3", "score": 0}, "226035934523": {"status": "Attempted to contact", "prio": "P3", "score": 5}, "133576395081": {"status": "New", "prio": "P3", "score": 0}, "228715674780": {"status": "New", "prio": "P3", "score": 0}, "226058886750": {"status": "New", "prio": "P3", "score": 0}, "226058878557": {"status": "Attempted to contact", "prio": "P3", "score": 5}, "228715630156": {"status": "New", "prio": "P3", "score": 0}, "23406443": {"status": "Attempted to contact", "prio": "P3", "score": 5}, "124895457120": {"status": "New", "prio": "P3", "score": 0}, "30860601228": {"status": "New", "prio": "P3", "score": 0}};
+const PREV = {"230375656877": {"status": "New", "prio": "P1", "score": 50}, "229132916490": {"status": "New", "prio": "P1", "score": 50}, "226035934523": {"status": "Nurturing", "prio": "P3", "score": 0}, "157263821887": {"status": "Attempted to contact", "prio": "P3", "score": 5}, "133576395081": {"status": "New", "prio": "P3", "score": 0}, "112386446163": {"status": "New", "prio": "P3", "score": 5}, "40851311": {"status": "Attempted to contact", "prio": "P3", "score": 10}, "23406443": {"status": "Attempted to contact", "prio": "P3", "score": 5}};
 function chg(t){ return `<span style="display:inline-block;font-size:10px;font-weight:700;padding:2px 8px;border-radius:8px;background:#FFF8E1;color:#8D6E00;border:1px solid #FFE082">🔄 ${t}</span>`; }
 function deltaHtml(c){
   const p = PREV[c.id];
@@ -341,14 +348,10 @@ function contentVal(c) {
 
 // ─── SALESFORCE ID MAP ────────────────────────────────────────────────────
 const SF_BASE = 'https://skeepers.my.salesforce.com/';
-// Reconstruit en direct depuis HubSpot (champ salesforce_contact_id18) — 29 juin 2026
+// Reconstruit en direct depuis HubSpot (champ salesforce_contact_id18) — 1 juillet 2026
 const SF_IDS = {
-  "226058886750":"003Sb00000lCo98IAC", "226058878557":"003Sb00000lCo8TIAS",
-  "226035934523":"003Sb00000lCAcCIAW", "212596193070":"003Sb00000htdBFIAY",
-  "211689405713":"003Sb00000hgo2rIAA", "202930417263":"003W5000019nDZYIA2",
-  "133576395081":"003W500000m3Oq9IAE", "124895457120":"003W500000iCjEYIA0",
-  "112386446163":"003W500000dSjwcIAC", "56297721639":"003W500000K0lhqIAB",
-  "30860601228":"003W500000DAa9EIAT", "40851311":"0036700003dz3hqAAA",
+  "226035934523":"003Sb00000lCAcCIAW", "133576395081":"003W500000m3Oq9IAE",
+  "112386446163":"003W500000dSjwcIAC", "40851311":"0036700003dz3hqAAA",
   "23406443":"0036700003dzX6jAAE"
 };
 
