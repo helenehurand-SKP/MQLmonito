@@ -165,7 +165,7 @@ body { font-family:var(--font); background:var(--g100); color:var(--navy); }
 
   <div class="cards">
     <div class="card all"><div class="card-lbl">Total MQL</div><div class="card-val" id="c-total">—</div><div class="card-sub" id="c-sub">4 owners</div></div>
-    <div class="card hot"><div class="card-lbl">🔴 P1 — HOT</div><div class="card-val" id="c-p1">—</div><div class="card-sub">SLA &lt; 24h</div></div>
+    <div class="card hot"><div class="card-lbl">🔴 P1 — HOT</div><div class="card-val" id="c-p1">—</div><div class="card-sub">SLA &lt; 4h ouvrées</div></div>
     <div class="card warm"><div class="card-lbl">🟠 P2 — WARM</div><div class="card-val" id="c-p2">—</div><div class="card-sub">SLA &lt; 48h</div></div>
     <div class="card cool"><div class="card-lbl">🟡 P3 — COOL</div><div class="card-val" id="c-p3">—</div><div class="card-sub">SLA &lt; 5 jours</div></div>
   </div>
@@ -189,29 +189,6 @@ body { font-family:var(--font); background:var(--g100); color:var(--navy); }
 
   <div class="mql-list" id="mql-list"></div>
 
-  <div style="margin-top:26px;background:var(--white);border:1px solid var(--g200);border-radius:10px;padding:18px 20px">
-    <div style="font-size:13px;font-weight:700;margin-bottom:12px;color:var(--navy)">📖 Légende — priorités &amp; SLA</div>
-    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;font-size:12px">
-      <div style="border-left:3px solid var(--hot);padding-left:10px">
-        <div style="font-weight:700;color:var(--hot)">🔴 P1 — HOT · SLA &lt; 24h</div>
-        <div style="color:var(--g700);margin-top:3px">Toute <strong>demande de démo</strong> (bascule automatiquement en P1) ou score ≥ 60. À traiter en moins de 24h.</div>
-      </div>
-      <div style="border-left:3px solid var(--warm);padding-left:10px">
-        <div style="font-weight:700;color:var(--warm)">🟠 P2 — WARM · SLA &lt; 48h</div>
-        <div style="color:var(--g700);margin-top:3px">Score entre 35 et 59. À traiter en moins de 48h.</div>
-      </div>
-      <div style="border-left:3px solid var(--cool);padding-left:10px">
-        <div style="font-weight:700;color:#c8970a">🟡 P3 — COOL · SLA &lt; 5 jours</div>
-        <div style="color:var(--g700);margin-top:3px">Score &lt; 35. Nurturing, à traiter sous 5 jours ouvrés.</div>
-      </div>
-    </div>
-    <div style="margin-top:14px;font-size:11px;color:var(--g400);line-height:1.6">
-      <strong>Barème de score :</strong> Demo +35 · 3+ conv. +25 / 2 conv. +15 · clic email &lt;7j +20 · open email &lt;7j +10 · séquence active &lt;7j +10 · Tier 1 +10 / Tier 2 +5 · Connected +10 / Attempted +5 (plafond 100).<br>
-      <strong>Fenêtre :</strong> seuls les contacts devenus MQL au cours des <strong>14 derniers jours</strong> sont affichés ; au-delà ils sortent automatiquement du dashboard.<br>
-      <strong>🔄 Comparatif S-1 :</strong> badges de changement de statut / priorité / score vs le snapshot de la semaine précédente. <strong>🆕 Nouveau</strong> = MQL absent la semaine dernière.
-    </div>
-  </div>
-
   <div class="export-bar">
     <button class="btn btn-outline" onclick="copyTSV()">📋 Copier TSV</button>
     <button class="btn btn-primary" onclick="downloadTSV()">↓ Export TSV</button>
@@ -228,53 +205,22 @@ const OWNERS = {
   "186355996":  "Yacine TALEB"
 };
 
-const RAW = [{"id": "230375656877", "firstname": "Pierre-Yves", "lastname": "Bastin", "email": "p-ybastin@hotmail.be", "jobtitle": "Director/Head of E-commerce", "company": "Baswil", "company_tier": "", "owner": "186355996", "status": "New", "qt": "Demo", "event": null, "event_status": null, "recent_evt": "Thank you - Skeepers: FR-SKP-ALL-FO-Demo Form (2nd)", "recent_date": "2026-06-22", "mql_date": "2026-06-22", "convs": 2, "open": null, "click": null, "seq": null},
-{"id": "229132916490", "firstname": "Jean-Michel", "lastname": "Larre", "email": "jm.larre@vitaalgae.com", "jobtitle": "Director/Head of Founder/CEO", "company": "VitaAlgae Europe", "company_tier": "", "owner": "186355996", "status": "New", "qt": "Demo", "event": null, "event_status": null, "recent_evt": "Thank you - Skeepers: FR-SKP-ALL-FO-Demo Form (2nd)", "recent_date": "2026-06-17", "mql_date": "2026-06-17", "convs": 2, "open": null, "click": null, "seq": null},
-{"id": "228715630156", "firstname": "Jonathan", "lastname": "Clementz", "email": "jonathan.clementz@manutan.fr", "jobtitle": "group Head of pricing", "company": "Manutan", "company_tier": "", "owner": "692717221", "status": "New", "qt": "Webinar Follow Up", "event": "2026-Q2-FR-SKP-WEBINAR-WEBINAR COMARKETING-Linkedin CX Advisor", "event_status": "Attendee", "recent_evt": null, "recent_date": null, "mql_date": "2026-06-16", "convs": 0, "open": null, "click": null, "seq": null},
-{"id": "228720309092", "firstname": "Benjamin", "lastname": "Soriano", "email": "benjamin.soriano@fnacdarty.com", "jobtitle": "Directeur Surete Groupe", "company": "Fnac Darty", "company_tier": "", "owner": "2088955178", "status": "New", "qt": "Webinar Follow Up", "event": "2026-Q2-FR-SKP-WEBINAR-WEBINAR COMARKETING-Linkedin CX Advisor", "event_status": "Attendee", "recent_evt": null, "recent_date": null, "mql_date": "2026-06-16", "convs": 0, "open": null, "click": null, "seq": null},
-{"id": "228715674780", "firstname": "Claire", "lastname": "Jamoulle", "email": "claire.jamoulle@edf.fr", "jobtitle": "Adjointe au chef de service clients", "company": "EDF", "company_tier": "", "owner": "1100767711", "status": "Attempted to contact", "qt": "Webinar Follow Up", "event": "2026-Q2-FR-SKP-WEBINAR-WEBINAR COMARKETING-Linkedin CX Advisor", "event_status": "Attendee", "recent_evt": null, "recent_date": null, "mql_date": "2026-06-16", "convs": 0, "open": null, "click": null, "seq": null},
-{"id": "227922004910", "firstname": "Amelie", "lastname": "Smith", "email": "amelie.smith@rivesparis.banquepopulaire.fr", "jobtitle": "Communication RSE", "company": "BRPI", "company_tier": "", "owner": "1100767711", "status": "New", "qt": "Scoring", "event": null, "event_status": null, "recent_evt": "Observatoire des parcours clients: FR-FO-Discover content", "recent_date": "2026-06-12", "mql_date": "2026-06-15", "convs": 1, "open": null, "click": null, "seq": null},
-{"id": "226058886750", "firstname": "Akins", "lastname": "Anretar", "email": "akins.anretar@sncf.fr", "jobtitle": "Chargé de la Relation Client Chez Ouigo - SNCF Voyageurs", "company": "OUIGO", "company_tier": "", "owner": "1100767711", "status": "New", "qt": "Scoring", "event": null, "event_status": null, "recent_evt": null, "recent_date": null, "mql_date": "2026-06-15", "convs": 0, "open": null, "click": null, "seq": null},
-{"id": "226058878557", "firstname": "Marie", "lastname": "Carlos", "email": "marie.carlos@sncf.fr", "jobtitle": "Responsable Expérience Client", "company": "SNCF Gares & Connexions", "company_tier": "", "owner": "1100767711", "status": "Attempted to contact", "qt": "Scoring", "event": null, "event_status": null, "recent_evt": null, "recent_date": null, "mql_date": "2026-06-16", "convs": 0, "open": null, "click": null, "seq": null},
-{"id": "226035934523", "firstname": "Catherine", "lastname": "Baranski", "email": "catherine.baranski@orange.com", "jobtitle": "International Marketing Communications Executive", "company": "Orange Business Services", "company_tier": "", "owner": "2088955178", "status": "Nurturing", "qt": null, "event": null, "event_status": null, "recent_evt": null, "recent_date": null, "mql_date": "2026-06-19", "convs": 0, "open": null, "click": null, "seq": null},
-{"id": "212596193070", "firstname": "Robin", "lastname": "Fuertes", "email": "robin.fuertes@bpce.fr", "jobtitle": "Responsable Learning & Development", "company": "Natixis", "company_tier": "", "owner": "1100767711", "status": "Nurturing", "qt": "Scoring", "event": null, "event_status": null, "recent_evt": null, "recent_date": null, "mql_date": "2026-06-15", "convs": 0, "open": null, "click": null, "seq": null},
-{"id": "211689405713", "firstname": "Isidoro", "lastname": "Elisabeth [ceidf]", "email": "elisabeth.isidoro@ceidf.caisse-epargne.fr", "jobtitle": "Responsable régionale gestion privée", "company": "Caisse d'Epargne Ile-de-France", "company_tier": "", "owner": "1100767711", "status": "Nurturing", "qt": "Scoring", "event": null, "event_status": null, "recent_evt": null, "recent_date": null, "mql_date": "2026-06-15", "convs": 0, "open": null, "click": null, "seq": null},
-{"id": "202930417263", "firstname": "Hugo", "lastname": "Baugé", "email": "hbauge@liberatedbrands.eu", "jobtitle": "Marketplace Manager", "company": "Volcom", "company_tier": "", "owner": "2088955178", "status": "New", "qt": null, "event": null, "event_status": null, "recent_evt": null, "recent_date": null, "mql_date": "2026-06-29", "convs": 0, "open": null, "click": null, "seq": null},
-{"id": "157263821887", "firstname": "Camille", "lastname": "Jeune", "email": "camille.lejeune@cromology.com", "jobtitle": "Responsable Digital et E-commerce Groupe", "company": "Cromology", "company_tier": "", "owner": "692717221", "status": "Attempted to contact", "qt": "Event Followup", "event": "2025-Q3-FR-SKP-ALL-EVENT-EVENT EXTERNAL-All4Customer Meetings Cannes", "event_status": "Meeting", "recent_evt": null, "recent_date": null, "mql_date": "2026-06-29", "convs": 0, "open": null, "click": null, "seq": null},
-{"id": "133576395081", "firstname": "Gaëlle", "lastname": "Delespine", "email": "gaelle.delespine@melvita.com", "jobtitle": "Directrice Générale MELVITA France", "company": "Melvita - Groupe L'Occitane en Provence", "company_tier": "", "owner": "692717221", "status": "New", "qt": null, "event": null, "event_status": null, "recent_evt": null, "recent_date": null, "mql_date": "2026-06-22", "convs": 0, "open": null, "click": null, "seq": null},
-{"id": "124895457120", "firstname": "Yann", "lastname": "Lhostis", "email": "yann.lhostis@bpce.fr", "jobtitle": "Expérience Client et Marketing Digital", "company": "Groupe BPCE", "company_tier": "", "owner": "1100767711", "status": "Attempted to contact", "qt": "Scoring", "event": null, "event_status": null, "recent_evt": null, "recent_date": null, "mql_date": "2026-06-15", "convs": 0, "open": null, "click": null, "seq": null},
-{"id": "112386446163", "firstname": "Cyriel", "lastname": "Meille", "email": "cyriel@snowleader.com", "jobtitle": "Chef de projet Web freelance", "company": "SNOWLEADER", "company_tier": "2", "owner": "692717221", "status": "New", "qt": null, "event": null, "event_status": null, "recent_evt": null, "recent_date": null, "mql_date": "2026-06-25", "convs": 0, "open": null, "click": null, "seq": null},
-{"id": "56297721639", "firstname": "Jennifer", "lastname": "Lively-Verguet", "email": "jlively@lyreco.com", "jobtitle": "Group Head Of Digital Product", "company": "LYRECO - FR", "company_tier": "", "owner": "692717221", "status": "New", "qt": null, "event": null, "event_status": null, "recent_evt": null, "recent_date": null, "mql_date": "2026-06-29", "convs": 0, "open": null, "click": null, "seq": null},
-{"id": "30860601228", "firstname": "Gaîlle", "lastname": "Benoit", "email": "gaelle.benoit@sncf.fr", "jobtitle": "Directrice Strategie Marques, Communication et CRM", "company": "SNCF", "company_tier": "", "owner": "1100767711", "status": "New", "qt": "Webinar Follow Up", "event": "2026-Q2-FR-SKP-WEBINAR-WEBINAR COMARKETING-Linkedin CX Advisor", "event_status": "Attendee", "recent_evt": null, "recent_date": null, "mql_date": "2026-06-16", "convs": 0, "open": null, "click": null, "seq": null},
-{"id": "40851311", "firstname": "Christelle", "lastname": "Fabre", "email": "christelle.fabre@cromologyservices.com", "jobtitle": "Directrice Marketing et Développement", "company": "Cromology Services (zolpan, tollens)", "company_tier": "2", "owner": "692717221", "status": "Attempted to contact", "qt": null, "event": null, "event_status": null, "recent_evt": null, "recent_date": null, "mql_date": "2026-06-25", "convs": 0, "open": null, "click": null, "seq": null},
-{"id": "23406443", "firstname": "Jérome", "lastname": "Laffon", "email": "jerome.laffon@sncf.fr", "jobtitle": "Directeur Général OUIGO", "company": "OUIGO", "company_tier": "", "owner": "1100767711", "status": "Attempted to contact", "qt": "Webinar Follow Up", "event": "2026-Q2-FR-SKP-WEBINAR-WEBINAR COMARKETING-Linkedin CX Advisor", "event_status": "Registered", "recent_evt": null, "recent_date": null, "mql_date": "2026-06-17", "convs": 0, "open": null, "click": null, "seq": null}];
+const RAW = [{"id":"230375656877","firstname":"Pierre-Yves","lastname":"Bastin","email":"p-ybastin@hotmail.be","jobtitle":"Director/Head of E-commerce","company":"Baswil","company_tier":"","owner":"186355996","status":"New","qt":"Demo","recent_evt":"Thank you - Skeepers: FR-SKP-ALL-FO-Demo Form (2nd)","recent_date":"2026-06-22","convs":2,"open":null,"click":null,"seq":null},
+{"id":"229132916490","firstname":"Jean-Michel","lastname":"Larre","email":"jm.larre@vitaalgae.com","jobtitle":"Director/Head of Founder/CEO","company":"VitaAlgae Europe","company_tier":"","owner":"186355996","status":"New","qt":"Demo","recent_evt":"Thank you - Skeepers: FR-SKP-ALL-FO-Demo Form (2nd)","recent_date":"2026-06-17","convs":2,"open":null,"click":null,"seq":null},
+{"id":"226035934523","firstname":"Catherine","lastname":"Baranski","email":"catherine.baranski@orange.com","jobtitle":"International Marketing Communications Executive","company":"Orange Business Services","company_tier":"","owner":"2088955178","status":"Nurturing","qt":null,"recent_evt":null,"recent_date":null,"convs":0,"open":null,"click":null,"seq":null},
+{"id":"157263821887","firstname":"Camille","lastname":"Jeune","email":"camille.lejeune@cromology.com","jobtitle":"Responsable Digital et E-commerce Groupe","company":"Cromology","company_tier":"","owner":"692717221","status":"Attempted to contact","qt":"Event Followup","recent_evt":null,"recent_date":null,"convs":0,"open":null,"click":null,"seq":null},
+{"id":"133576395081","firstname":"Gaëlle","lastname":"Delespine","email":"gaelle.delespine@melvita.com","jobtitle":"Directrice Générale MELVITA France","company":"Melvita - Groupe L'Occitane en Provence","company_tier":"1","owner":"692717221","status":"New","qt":null,"recent_evt":null,"recent_date":null,"convs":0,"open":null,"click":null,"seq":null},
+{"id":"112386446163","firstname":"Cyriel","lastname":"Meille","email":"cyriel@snowleader.com","jobtitle":"Chef de projet Web freelance","company":"SNOWLEADER","company_tier":"","owner":"692717221","status":"New","qt":null,"recent_evt":null,"recent_date":null,"convs":0,"open":null,"click":null,"seq":null},
+{"id":"40851311","firstname":"Christelle","lastname":"Fabre","email":"christelle.fabre@cromology.com","jobtitle":"Directrice Marketing et Développement","company":"Cromology Services (zolpan, tollens)","company_tier":"","owner":"692717221","status":"Attempted to contact","qt":null,"recent_evt":null,"recent_date":null,"convs":0,"open":null,"click":null,"seq":null},
+{"id":"23406443","firstname":"Jérome","lastname":"Laffon","email":"jerome.laffon@sncf.fr","jobtitle":"Directeur Général OUIGO","company":"OUIGO","company_tier":"1","owner":"1100767711","status":"Attempted to contact","qt":"Webinar Follow Up","recent_evt":null,"recent_date":null,"convs":0,"open":null,"click":null,"seq":null}];
 
 // ─── HUBSPOT EMAIL ENGAGEMENT (live pull) ──────────────────────────────────
 // opens/clicks = total cumulé HubSpot ; lastOpen/lastClick = dernière date ;
 // lastUrl = "Last Page Seen" HubSpot (dernière page vue par le contact).
 const HS_ENGAGE = {
   "230375656877":{lastUrl:"https://skeepers.io/fr/thank-you-questions/?submissionGuid=10680c94-4eb0-4427-bef9-72d9abb7a118"},
-  "229132916490":{lastUrl:"https://skeepers.io/"},
-  "227922004910":{lastUrl:"https://skeepers.io/fr/lp/ebook-observatoire-parcours-clients/"},
-  "124895457120":{opens:26, lastOpen:"2025-05-22", clicks:1, lastClick:"2025-05-22", lastEmail:"2025-Q2-FR-SKP-AV-WBN-Post webinar-Features IA - No show"},
-  "30860601228":{opens:2, lastOpen:"2026-04-28", lastEmail:"2026-Q1-FR-ALL-SKP-May Newsletter Prospects"}
+  "229132916490":{lastUrl:"https://skeepers.io/"}
 };
-
-// ─── COMPARATIF S-1 (semaine précédente) ──────────────────────────
-const PREV = {"230375656877": {"status": "New", "prio": "P1", "score": 50}, "229132916490": {"status": "New", "prio": "P1", "score": 50}, "227922004910": {"status": "New", "prio": "P3", "score": 0}, "226035934523": {"status": "Attempted to contact", "prio": "P3", "score": 5}, "133576395081": {"status": "New", "prio": "P3", "score": 0}, "228715674780": {"status": "New", "prio": "P3", "score": 0}, "226058886750": {"status": "New", "prio": "P3", "score": 0}, "226058878557": {"status": "Attempted to contact", "prio": "P3", "score": 5}, "228715630156": {"status": "New", "prio": "P3", "score": 0}, "23406443": {"status": "Attempted to contact", "prio": "P3", "score": 5}, "124895457120": {"status": "New", "prio": "P3", "score": 0}, "30860601228": {"status": "New", "prio": "P3", "score": 0}};
-function chg(t){ return `<span style="display:inline-block;font-size:10px;font-weight:700;padding:2px 8px;border-radius:8px;background:#FFF8E1;color:#8D6E00;border:1px solid #FFE082">🔄 ${t}</span>`; }
-function deltaHtml(c){
-  const p = PREV[c.id];
-  if(!p) return `<div style="margin-top:6px"><span style="display:inline-block;font-size:10px;font-weight:700;padding:2px 8px;border-radius:8px;background:#E3F2FD;color:#1565C0">🆕 Nouveau cette semaine</span></div>`;
-  const b=[];
-  if(p.status!==c.status) b.push(chg(`Statut : ${p.status} → ${c.status}`));
-  if(p.prio!==c.sc.prio) b.push(chg(`Priorité : ${p.prio} → ${c.sc.prio}`));
-  if(p.score!==c.sc.s) b.push(chg(`Score : ${p.score} → ${c.sc.s} (${c.sc.s>=p.score?'+':''}${c.sc.s-p.score})`));
-  if(!b.length) return `<div style="margin-top:6px"><span style="display:inline-block;font-size:10px;font-weight:600;padding:2px 8px;border-radius:8px;background:var(--g100);color:var(--g400)">= inchangé vs S-1</span></div>`;
-  return `<div style="margin-top:6px;display:flex;gap:6px;flex-wrap:wrap">`+b.join('')+`</div>`;
-}
-function deltaText(c){ const p=PREV[c.id]; if(!p) return 'Nouveau'; const a=[]; if(p.status!==c.status)a.push('statut '+p.status+'>'+c.status); if(p.prio!==c.sc.prio)a.push('prio '+p.prio+'>'+c.sc.prio); if(p.score!==c.sc.s)a.push('score '+p.score+'>'+c.sc.s); return a.length?a.join('; '):'inchangé'; }
-function evtStatusBadge(s){ if(!s) return ''; const t=String(s).toLowerCase(); let bg='#E8EAF2',col='#3D4566'; if(t.indexOf('attend')>=0){bg='#E8F5E9';col='#2E7D32';} else if(t.indexOf('no show')>=0||t.indexOf('no-show')>=0){bg='#FFEBEE';col='#C62828';} else if(t.indexOf('regist')>=0){bg='#FFF3E0';col='#E65100';} return `<span style="display:inline-block;font-size:10px;font-weight:700;padding:1px 7px;border-radius:8px;background:${bg};color:${col};margin-left:4px">${s}</span>`; }
 
 // ─── SCORING ──────────────────────────────────────────────────────────────
 function daysSince(ds) {
@@ -294,18 +240,16 @@ function score(c) {
   if (c.status==='Connected') { s+=10; bd.push('Connected +10'); }
   else if (c.status==='Attempted to contact') { s+=5; bd.push('Attempted +5'); }
   s = Math.min(s, 100);
-  const isDemo = (c.qt||'').toLowerCase() === 'demo';
-  const prio = (isDemo || s>=60) ? 'P1' : (s>=35 ? 'P2' : 'P3');
-  const lvl = prio==='P1'?'hot':prio==='P2'?'warm':'cool';
-  const emoji = prio==='P1'?'🔴':prio==='P2'?'🟠':'🟡';
-  const sla = prio==='P1'?'< 24h':prio==='P2'?'< 48h':'< 5 jours';
-  if (isDemo && s<60) bd.push('Demo → P1');
+  const lvl = s>=60?'hot':s>=35?'warm':'cool';
+  const prio = s>=60?'P1':s>=35?'P2':'P3';
+  const emoji = s>=60?'🔴':s>=35?'🟠':'🟡';
+  const sla = s>=60?'< 4h ouvrées':s>=35?'< 48h':'< 5 jours';
   return {s, lvl, prio, emoji, sla, bd};
 }
 function followup(c, sc) {
   const qt = (c.qt||'').toLowerCase();
   if (c.status==='Connected') return '✅ Contact établi — pousser vers Appointment Scheduled. Relance immédiate, proposer un créneau.';
-  if (sc.prio==='P1' && qt==='demo') return '📞 Appel J+0 + email personnalisé citant la demande de démo. Proposer 3 créneaux sous 24h (SLA P1).';
+  if (sc.prio==='P1' && qt==='demo') return '📞 Appel J+0 + email personnalisé citant la demande de démo. Proposer 3 créneaux dans les 4h ouvrées.';
   if (sc.prio==='P1') return `📞 Appel J+0 + LinkedIn. Mentionner "${c.recent_evt||'la conversion récente'}".`;
   if (sc.prio==='P2' && qt==='demo') return '📧 Séquence démo J+1. Email semi-personnalisé ancré sur la demande de démo.';
   if (sc.prio==='P2') return '📧 Séquence nurturing mid-touch. 1 touche perso sur le motif d\'engagement.';
@@ -341,14 +285,12 @@ function contentVal(c) {
 
 // ─── SALESFORCE ID MAP ────────────────────────────────────────────────────
 const SF_BASE = 'https://skeepers.my.salesforce.com/';
-// Reconstruit en direct depuis HubSpot (champ salesforce_contact_id18) — 29 juin 2026
+// Reconstruit en direct depuis HubSpot (champ salesforce_contact_id18) — 1 juillet 2026
 const SF_IDS = {
-  "226058886750":"003Sb00000lCo98IAC", "226058878557":"003Sb00000lCo8TIAS",
-  "226035934523":"003Sb00000lCAcCIAW", "212596193070":"003Sb00000htdBFIAY",
-  "211689405713":"003Sb00000hgo2rIAA", "202930417263":"003W5000019nDZYIA2",
-  "133576395081":"003W500000m3Oq9IAE", "124895457120":"003W500000iCjEYIA0",
-  "112386446163":"003W500000dSjwcIAC", "56297721639":"003W500000K0lhqIAB",
-  "30860601228":"003W500000DAa9EIAT", "40851311":"0036700003dz3hqAAA",
+  "112386446163":"003W500000dSjwcIAC",
+  "226035934523":"003Sb00000lCAcCIAW",
+  "40851311":"0036700003dz3hqAAA",
+  "133576395081":"003W500000m3Oq9IAE",
   "23406443":"0036700003dzX6jAAE"
 };
 
@@ -370,8 +312,7 @@ const scored = RAW.map(c => {
     click: eng.lastClick || c.click,
     opens: eng.opens ?? null,
     clicks: eng.clicks ?? null,
-    lastUrl: eng.lastUrl || null,
-    lastEmail: eng.lastEmail || null
+    lastUrl: eng.lastUrl || null
   };
   const sc = score(c2);
   const fu = followup(c2, sc);
@@ -476,7 +417,6 @@ function renderList() {
           <div class="mql-name">${sc.emoji} ${c.firstname} ${c.lastname}</div>
           ${isDemo?`<div class="demo-flag">Demo request — à traiter en priorité</div>`:''}
           ${sc.bd.length?`<div class="breakdown">${sc.bd.join(' · ')}</div>`:''}
-          ${deltaHtml(c)}
         </div>
         <div class="mql-right">
           <div class="score-num">${sc.s}</div>
@@ -490,14 +430,11 @@ function renderList() {
             <div class="detail-row"><span class="d-icon">📧</span><span class="d-lbl">Email</span><span class="d-val">${c.email}</span></div>
             <div class="detail-row"><span class="d-icon">🔄</span><span class="d-lbl">Lead Status</span><span class="d-val">${lsBadge(c.status)}</span></div>
             <div class="detail-row"><span class="d-icon">🎯</span><span class="d-lbl">Qualification</span><span class="d-val em">${c.qt||'—'}</span></div>
-            ${c.event?`<div class="detail-row"><span class="d-icon">🎪</span><span class="d-lbl">Événement</span><span class="d-val em">${c.event}${evtStatusBadge(c.event_status)}</span></div>`:''}
             <div class="detail-row"><span class="d-icon">📋</span><span class="d-lbl">Conversion</span><span class="d-val">${c.recent_evt||'—'}</span></div>
             <div class="detail-row"><span class="d-icon">📅</span><span class="d-lbl">Date trigger</span><span class="d-val">${fmtDate(c.recent_date)} · ${c.convs} conv.</span></div>
-            <div class="detail-row"><span class="d-icon">⭐</span><span class="d-lbl">Devenu MQL</span><span class="d-val">${fmtDate(c.mql_date)} · il y a ${daysSince(c.mql_date)}j</span></div>
           </div>
           <div>
             <div class="detail-row"><span class="d-icon">📨</span><span class="d-lbl">Opens email</span><span class="d-val${daysSince(c.open)<=RECENT_DAYS?' em':''}">${openVal(c)}</span></div>
-            ${c.lastEmail?`<div class="detail-row"><span class="d-icon">✉️</span><span class="d-lbl">Dernier email</span><span class="d-val" title="Nom de la dernière campagne email marketing (proxy de l'objet)">${c.lastEmail}</span></div>`:''}
             <div class="detail-row"><span class="d-icon">🖱️</span><span class="d-lbl">Dernier clic</span><span class="d-val${daysSince(c.click)<=RECENT_DAYS?' em':''}">${clickVal(c)}</span></div>
             <div class="detail-row"><span class="d-icon">🔗</span><span class="d-lbl">Contenu vu</span><span class="d-val">${contentVal(c)}</span></div>
           </div>
@@ -530,14 +467,13 @@ function renderSummary() {
 // ─── TSV ──────────────────────────────────────────────────────────────────
 function buildTSV() {
   const today = new Date().toISOString().slice(0,10);
-  const headers = ['Date_Export','Owner','Contact_ID','Nom','Email','Entreprise','Titre','Qualification','Event','Event_Status','Lead_Status','Score','Priorité','SLA','Delta_S-1','Date_MQL','SF_Link','Dernière_Conversion','Nb_Conv','Dernier_Email','Follow_Up'].join('\t');
+  const headers = ['Date_Export','Owner','Contact_ID','Nom','Email','Entreprise','Titre','Qualification','Lead_Status','Score','Priorité','SLA','SF_Link','Dernière_Conversion','Nb_Conv','Follow_Up'].join('\t');
   const rows = scored.map(c=>[
     today, c.ownerName, c.id,
     `${c.firstname} ${c.lastname}`, c.email, c.company, c.jobtitle||'',
-    c.qt||'', c.event||'', c.event_status||'', c.status, c.sc.s, c.sc.prio, c.sc.sla,
-    deltaText(c), c.mql_date||'',
+    c.qt||'', c.status, c.sc.s, c.sc.prio, c.sc.sla,
     c.sfId ? SF_BASE+c.sfId : '',
-    c.recent_evt||'', c.convs, c.lastEmail||'', c.fu.replace(/\t/g,' ')
+    c.recent_evt||'', c.convs, c.fu.replace(/\t/g,' ')
   ].join('\t'));
   return [headers,...rows].join('\n');
 }
